@@ -9,8 +9,8 @@ namespace ControlAsistenciaApi.Core.Domain
     public class Registro_asistencia
     {
         public int? id { get; set; }
-        public int? id_horario { get; set; }
+        public int? id_horario_d { get; set; }
         public bool estado { get; set; }
-        public DateTime? fecha { get; set; }
+        public string? fecha { get; set; }
     }
 }

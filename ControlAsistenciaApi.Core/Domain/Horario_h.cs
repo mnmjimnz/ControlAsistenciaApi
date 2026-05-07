@@ -11,9 +11,9 @@ namespace ControlAsistenciaApi.Core.Domain
         public int? id { get; set; }
         public int? idaula { get; set; }
         public int? idmateria { get; set; }
-        public DateTime? hora_inicio { get; set; }
-        public DateTime? hora_fin { get; set; }
-        public DateTime? fecha { get; set; }
+        public string? hora_inicio { get; set; }
+        public string? hora_fin { get; set; }
+        public string fecha { get; set; } = string.Empty;
         public string catedratico { get; set; } = string.Empty;
     }
 }
