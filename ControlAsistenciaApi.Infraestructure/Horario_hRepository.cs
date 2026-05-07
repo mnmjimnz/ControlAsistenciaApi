@@ -43,7 +43,7 @@ namespace ControlAsistenciaApi.Infraestructure
         {
             try
             {
-                string sql = "INSERT INTO horario_h(idaula, idmateria, hora_inicio, hora_fin, fecha, catedratico) VALUES(@idaula, @idmateria, @hora_inicio, @hora_fin, @fecha, @catedratico) SELECT SCOPE_IDENTITY();";
+                string sql = "INSERT INTO horario_h(idaula, idmateria, hora_inicio, hora_fin, fecha, catedratico) VALUES(@idaula, @idmateria, @hora_inicio, @hora_fin, @fecha, @catedratico) RETURNING id;";
                 var id = await _rep.InsertScalarAsync(sql, p);
                 return id;
             }

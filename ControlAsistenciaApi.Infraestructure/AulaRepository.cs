@@ -43,7 +43,7 @@ namespace ControlAsistenciaApi.Infraestructure
         {
             try
             {
-                string sql = "INSERT INTO aula(codigo) VALUES(@codigo) SELECT SCOPE_IDENTITY();";
+                string sql = "INSERT INTO aula(codigo) VALUES(@codigo) RETURNING id;";
                 var id = await _rep.InsertScalarAsync(sql, p);
                 return id;
             }
