@@ -39,6 +39,18 @@ namespace ControlAsistenciaApi.Infraestructure
                 return Enumerable.Empty<Horario_d>();
             }
         }
+        public async Task<IEnumerable<Horario_d>> ObtenerHorario_dPorIdH(int? id)
+        {
+            try
+            {
+                string sql = $"SELECT * FROM horario_d where idhorario_h = {id}";
+                return await _rep.GetAllAsync(sql, id);
+            }
+            catch (Exception ex)
+            {
+                return Enumerable.Empty<Horario_d>();
+            }
+        }
         public async Task<int> GuardarHorario_d(Horario_d p)
         {
             try
