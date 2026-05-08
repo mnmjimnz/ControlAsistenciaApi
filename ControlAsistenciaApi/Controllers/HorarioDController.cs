@@ -25,7 +25,7 @@ namespace ControlAsistenciaApi.Controllers
                 return BadRequest(ex);
             }
         }
-        [HttpGet("ObtenerHorarioPorIdH/id")]
+        [HttpGet("ObtenerHorarioPorIdH")]
         public async Task<IActionResult> ObtenerHorarioPorIdH(int id)
         {
             try
