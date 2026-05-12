@@ -13,5 +13,7 @@ namespace ControlAsistenciaApi.Usecase.Interface
         Task<Registro_asistenciaDto> ObtenerRegistro_asistenciaPorId(int? id);
         Task<int> GuardarRegistro_asistencia(Registro_asistenciaDto p);
         Task<int> EditarRegistro_asistencia(Registro_asistenciaDto p);
+        Task<bool> ExisteFingerprint(Registro_asistenciaDto p);
+        Task<bool> AlumnoYaConfirmo(Registro_asistenciaDto p);
     }
 }

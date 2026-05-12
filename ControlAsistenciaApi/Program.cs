@@ -2,6 +2,7 @@ using AutoMapper;
 using ControlAsistenciaApi.Core.Domain;
 using ControlAsistenciaApi.Core.Dtos;
 using ControlAsistenciaApi.Infraestructure;
+using ControlAsistenciaApi.Infraestructure.Helper;
 using ControlAsistenciaApi.Infraestructure.Interface;
 using ControlAsistenciaApi.Usecase;
 using ControlAsistenciaApi.Usecase.Helper;
@@ -27,7 +28,8 @@ builder.Services.AddCors(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<WebAuthnService>();
 builder.Services.Configure<ConnectionString>(builder.Configuration.GetSection("ConnectionStrings"));
 //inyeccion de dependencias de reporisotrio generico por tipo 
 builder.Services.AddTransient<IGenericRepository<Alumno>, GenericRepository<Alumno>>();
@@ -37,6 +39,7 @@ builder.Services.AddTransient<IGenericRepository<JoinAlumnoHorarioDetDto>, Gener
 builder.Services.AddTransient<IGenericRepository<Horario_h>, GenericRepository<Horario_h>>();
 builder.Services.AddTransient<IGenericRepository<Materia>, GenericRepository<Materia>>();
 builder.Services.AddTransient<IGenericRepository<Registro_asistencia>, GenericRepository<Registro_asistencia>>();
+builder.Services.AddTransient<IGenericRepository<bool>, GenericRepository<bool>>();
 
 //inyeccion de dependencias de repositorios
 builder.Services.AddTransient<IAlumnoRepository, AlumnoRepository>();
@@ -53,6 +56,7 @@ builder.Services.AddTransient<IHorario_dUseCase, Horario_dUseCase>();
 builder.Services.AddTransient<IHorario_hUseCase, Horario_hUseCase>();
 builder.Services.AddTransient<IMateriaUseCase, MateriaUseCase>();
 builder.Services.AddTransient<IRegistro_asistenciaUseCase, Registro_asistenciaUseCase>();
+builder.Services.AddTransient<IAsistenciaService, AsistenciaService>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile));
 

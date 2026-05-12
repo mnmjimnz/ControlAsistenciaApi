@@ -13,5 +13,7 @@ namespace ControlAsistenciaApi.Infraestructure.Interface
         Task<IEnumerable<Registro_asistencia>> ObtenerRegistro_asistenciaPorId(int? id);
         Task<int> GuardarRegistro_asistencia(Registro_asistencia p);
         Task<int> EditarRegistro_asistencia(Registro_asistencia p);
+        Task<bool> ExisteFingerprint(Registro_asistencia data);
+        Task<bool> AlumnoYaConfirmo(Registro_asistencia data);
     }
 }

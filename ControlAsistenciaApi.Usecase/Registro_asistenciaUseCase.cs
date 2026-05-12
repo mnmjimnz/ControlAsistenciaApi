@@ -69,5 +69,29 @@ namespace ControlAsistenciaApi.Usecase
                 return 0;
             }
         }
+        public async Task<bool> ExisteFingerprint(Registro_asistenciaDto p)
+        {
+            try
+            {
+                var o = _mapper.Map<Registro_asistencia>(p);
+                return await _repoRegistro_asistencia.ExisteFingerprint(o);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> AlumnoYaConfirmo(Registro_asistenciaDto p)
+        {
+            try
+            {
+                var o = _mapper.Map<Registro_asistencia>(p);
+                return await _repoRegistro_asistencia.AlumnoYaConfirmo(o);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
