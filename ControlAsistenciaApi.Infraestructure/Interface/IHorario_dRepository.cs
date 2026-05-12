@@ -1,4 +1,5 @@
 ﻿using ControlAsistenciaApi.Core.Domain;
+using ControlAsistenciaApi.Core.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace ControlAsistenciaApi.Infraestructure.Interface
         Task<IEnumerable<Horario_d>> ObtenerHorario_dPorId(int? id);
         Task<int> GuardarHorario_d(Horario_d p);
         Task<int> EditarHorario_d(Horario_d p);
-        Task<IEnumerable<Horario_d>> ObtenerHorario_dPorIdH(int? id);
+        Task<IEnumerable<JoinAlumnoHorarioDetDto>> ObtenerHorario_dPorIdH(int? id);
     }
 }

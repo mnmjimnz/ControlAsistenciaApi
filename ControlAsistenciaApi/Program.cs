@@ -33,6 +33,7 @@ builder.Services.Configure<ConnectionString>(builder.Configuration.GetSection("C
 builder.Services.AddTransient<IGenericRepository<Alumno>, GenericRepository<Alumno>>();
 builder.Services.AddTransient<IGenericRepository<Aula>, GenericRepository<Aula>>();
 builder.Services.AddTransient<IGenericRepository<Horario_d>, GenericRepository<Horario_d>>();
+builder.Services.AddTransient<IGenericRepository<JoinAlumnoHorarioDetDto>, GenericRepository<JoinAlumnoHorarioDetDto>>();
 builder.Services.AddTransient<IGenericRepository<Horario_h>, GenericRepository<Horario_h>>();
 builder.Services.AddTransient<IGenericRepository<Materia>, GenericRepository<Materia>>();
 builder.Services.AddTransient<IGenericRepository<Registro_asistencia>, GenericRepository<Registro_asistencia>>();

@@ -45,16 +45,16 @@ namespace ControlAsistenciaApi.Usecase
                 return new Horario_dDto();
             }
         }
-        public async Task<List<Horario_dDto>> ObtenerHorario_dPorIdH(int? id)
+        public async Task<List<JoinAlumnoHorarioDetDto>> ObtenerHorario_dPorIdH(int? id)
         {
             try
             {
-                var r = await _repoHorario_d.ObtenerHorario_dPorIdH(id);
-                return _mapper.Map<List<Horario_dDto>>(r);
+                var r = await _repoHorario_d.ObtenerHorario_dPorIdH(id) as List<JoinAlumnoHorarioDetDto>;
+                return r;
             }
             catch (Exception ex)
             {
-                return new List<Horario_dDto>();
+                return new List<JoinAlumnoHorarioDetDto>();
             }
         }
         public async Task<int> GuardarHorario_d(Horario_dDto p)
