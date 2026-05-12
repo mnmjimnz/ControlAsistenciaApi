@@ -33,7 +33,6 @@ namespace ControlAsistenciaApi.Infraestructure
                 _dbConnection?.Close();
             }
         }
-
         public async Task<int> InsertAsync(string sql, object parameters)
         {
             try

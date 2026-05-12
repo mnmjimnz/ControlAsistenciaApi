@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace ControlAsistenciaApi.Infraestructure
 {
-    public class Registro_asistenciaRepository: IRegistro_asistenciaRepository
+    public class Registro_asistenciaRepository : IRegistro_asistenciaRepository
     {
         private readonly IGenericRepository<Registro_asistencia> _rep;
-        public Registro_asistenciaRepository(IGenericRepository<Registro_asistencia> generic)
+        private readonly IGenericRepository<bool> _getExist;
+        public Registro_asistenciaRepository(IGenericRepository<Registro_asistencia> generic, IGenericRepository<bool> getExist)
         {
             _rep = generic;
+            _getExist = getExist;
         }
         public async Task<IEnumerable<Registro_asistencia>> ObtenerRegistro_asistencias()
         {
@@ -43,7 +45,7 @@ namespace ControlAsistenciaApi.Infraestructure
         {
             try
             {
-                string sql = "INSERT INTO registro_asistencia(id_horario_d, estado, fecha) VALUES(@id_horario_d, @estado, @fecha) RETURNING id;";
+                string sql = "INSERT INTO registro_asistencia(id_horario_d, id_horario_h, estado, fecha, fingerprint_sha256, user_agent, token_jti) VALUES(@id_horario_d, @id_horario_h, @estado, @fecha, @fingerprint_sha256, @user_agent, @token_jti) RETURNING id;";
                 var id = await _rep.InsertScalarAsync(sql, p);
                 return id;
             }
@@ -63,6 +65,47 @@ namespace ControlAsistenciaApi.Infraestructure
             catch (Exception ex)
             {
                 return 0;
+            }
+        }
+        public async Task<bool> ExisteFingerprint(Registro_asistencia data)
+        {
+            try
+            {
+                string sql = @$"SELECT EXISTS
+(
+    SELECT 1
+    FROM registro_asistencia
+    WHERE id_horario_h = @id_horario_h
+
+    AND fingerprint_sha256 = @fingerprint_sha256
+
+    AND user_agent = @user_agent
+);";
+                var r = await _getExist.GetAllAsync(sql, new { data.id_horario_h, data.fingerprint_sha256, data.user_agent });
+                return r.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> AlumnoYaConfirmo(Registro_asistencia data)
+        {
+            try
+            {
+                string sql = @$"SELECT EXISTS
+(
+    SELECT 1
+    FROM registro_asistencia
+    WHERE id_horario_h = {data.id_horario_h}
+    AND id_horario_d = {data.id_horario_d}
+);";
+                var r = await _getExist.GetAllAsync(sql, data);
+                return r.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }
