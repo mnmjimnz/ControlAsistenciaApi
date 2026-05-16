@@ -15,4 +15,9 @@ namespace ControlAsistenciaApi.Core.Dtos
         public string apellido { get; set; } = string.Empty;
         public string carrera { get; set; } = string.Empty;
     }
+    public class JoinAsistenciaAlumnosHorarioDet:JoinAlumnoHorarioDetDto
+    {
+        public bool estado { get; set; }
+        public string fecha { get; set; } = string.Empty;
+    }
 }

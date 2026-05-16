@@ -1,4 +1,5 @@
-﻿using ControlAsistenciaApi.Core.Dtos;
+﻿using ControlAsistenciaApi.Core.Domain;
+using ControlAsistenciaApi.Core.Dtos;
 using ControlAsistenciaApi.Usecase.Helper;
 using ControlAsistenciaApi.Usecase.Interface;
 using Microsoft.AspNetCore.Http;

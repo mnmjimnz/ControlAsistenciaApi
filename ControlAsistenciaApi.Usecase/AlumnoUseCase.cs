@@ -33,7 +33,7 @@ namespace ControlAsistenciaApi.Usecase
             try
             {
                 var r = await _repoAlumno.ObtenerAlumnoPorId(id);
-                return _mapper.Map<AlumnoDto>(r);
+                return _mapper.Map<AlumnoDto>(r.SingleOrDefault());
             }
             catch (Exception  ex)
             {

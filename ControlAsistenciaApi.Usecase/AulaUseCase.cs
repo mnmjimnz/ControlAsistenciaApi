@@ -38,7 +38,7 @@ namespace ControlAsistenciaApi.Usecase
             try
             {
                 var r = await _repoAula.ObtenerAulaPorId(id);
-                return _mapper.Map<AulaDto>(r);
+                return _mapper.Map<AulaDto>(r.SingleOrDefault());
             }
             catch (Exception ex)
             {

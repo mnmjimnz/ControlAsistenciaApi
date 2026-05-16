@@ -1,4 +1,5 @@
 ﻿using ControlAsistenciaApi.Core.Domain;
+using ControlAsistenciaApi.Core.Dtos;
 using ControlAsistenciaApi.Infraestructure.Interface;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace ControlAsistenciaApi.Infraestructure
     {
         private readonly IGenericRepository<Registro_asistencia> _rep;
         private readonly IGenericRepository<bool> _getExist;
-        public Registro_asistenciaRepository(IGenericRepository<Registro_asistencia> generic, IGenericRepository<bool> getExist)
+        private readonly IGenericRepository<JoinAsistenciaAlumnosHorarioDet> _joinAsistencia;
+        public Registro_asistenciaRepository(IGenericRepository<Registro_asistencia> generic, IGenericRepository<bool> getExist, IGenericRepository<JoinAsistenciaAlumnosHorarioDet> joinAsistencia)
         {
             _rep = generic;
             _getExist = getExist;
+            _joinAsistencia = joinAsistencia;
         }
         public async Task<IEnumerable<Registro_asistencia>> ObtenerRegistro_asistencias()
         {
@@ -39,6 +42,39 @@ namespace ControlAsistenciaApi.Infraestructure
             catch (Exception ex)
             {
                 return Enumerable.Empty<Registro_asistencia>();
+            }
+        }
+        public async Task<IEnumerable<JoinAsistenciaAlumnosHorarioDet>> ObtenerRegistro_asistenciaPorIdHorarioH(int? id)
+        {
+            try
+            {
+                string sql = @$"SELECT 
+    hd.id AS id_horariod,
+    hd.idhorario_h, 
+    al.id AS id_alumno,
+    al.nombre,
+    al.apellido,
+    al.carrera,
+    rg.estado,
+    rg.fecha
+
+FROM horario_d hd
+
+INNER JOIN alumno al 
+    ON hd.idalumno = al.id
+
+LEFT JOIN registro_asistencia rg 
+    ON rg.id_horario_d = hd.id
+    AND rg.id_horario_h = hd.idhorario_h
+
+WHERE hd.idhorario_h = {id}
+AND rg.estado = true
+ORDER BY hd.id DESC;";
+                return await _joinAsistencia.GetAllAsync(sql, id);
+            }
+            catch (Exception ex)
+            {
+                return Enumerable.Empty<JoinAsistenciaAlumnosHorarioDet>();
             }
         }
         public async Task<int> GuardarRegistro_asistencia(Registro_asistencia p)

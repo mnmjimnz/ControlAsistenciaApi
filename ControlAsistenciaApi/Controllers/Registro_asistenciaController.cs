@@ -50,5 +50,18 @@ namespace ControlAsistenciaApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpGet("ObtenerRegistro_asistenciaPorIdHorarioH")]
+        public async Task<IActionResult> ObtenerRegistro_asistenciaPorIdHorarioH(int id)
+        {
+            try
+            {
+                return Ok(await _registro_asistenciaUseCase.ObtenerRegistro_asistenciaPorIdHorarioH(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
     }
 }

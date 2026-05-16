@@ -45,6 +45,18 @@ namespace ControlAsistenciaApi.Usecase
                 return new Registro_asistenciaDto();
             }
         }
+        public async Task<List<JoinAsistenciaAlumnosHorarioDet>> ObtenerRegistro_asistenciaPorIdHorarioH(int? id)
+        {
+            try
+            {
+                var r = await _repoRegistro_asistencia.ObtenerRegistro_asistenciaPorIdHorarioH(id) as List<JoinAsistenciaAlumnosHorarioDet>;
+                return _mapper.Map<List<JoinAsistenciaAlumnosHorarioDet>>(r);
+            }
+            catch (Exception ex)
+            {
+                return new List<JoinAsistenciaAlumnosHorarioDet>();
+            }
+        }
         public async Task<int> GuardarRegistro_asistencia(Registro_asistenciaDto p)
         {
             try

@@ -1,4 +1,5 @@
 ﻿using ControlAsistenciaApi.Core.Domain;
+using ControlAsistenciaApi.Core.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace ControlAsistenciaApi.Infraestructure.Interface
         Task<int> EditarRegistro_asistencia(Registro_asistencia p);
         Task<bool> ExisteFingerprint(Registro_asistencia data);
         Task<bool> AlumnoYaConfirmo(Registro_asistencia data);
+        Task<IEnumerable<JoinAsistenciaAlumnosHorarioDet>> ObtenerRegistro_asistenciaPorIdHorarioH(int? id);
     }
 }

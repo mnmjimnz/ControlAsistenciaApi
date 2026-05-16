@@ -40,6 +40,7 @@ builder.Services.AddTransient<IGenericRepository<Horario_h>, GenericRepository<H
 builder.Services.AddTransient<IGenericRepository<Materia>, GenericRepository<Materia>>();
 builder.Services.AddTransient<IGenericRepository<Registro_asistencia>, GenericRepository<Registro_asistencia>>();
 builder.Services.AddTransient<IGenericRepository<bool>, GenericRepository<bool>>();
+builder.Services.AddTransient<IGenericRepository<JoinAsistenciaAlumnosHorarioDet>, GenericRepository<JoinAsistenciaAlumnosHorarioDet>>();
 
 //inyeccion de dependencias de repositorios
 builder.Services.AddTransient<IAlumnoRepository, AlumnoRepository>();
