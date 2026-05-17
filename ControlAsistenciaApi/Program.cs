@@ -19,9 +19,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy("Libre", policy =>
     {
         policy
-            .AllowAnyOrigin()
+            .WithOrigins("https://controlasistencia-front.onrender.com")
+            ///.WithOrigins("http://127.0.0.1:5500")
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
 
@@ -60,7 +62,7 @@ builder.Services.AddTransient<IRegistro_asistenciaUseCase, Registro_asistenciaUs
 builder.Services.AddTransient<IAsistenciaService, AsistenciaService>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile));
-
+builder.Services.AddSignalR();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -71,6 +73,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("Libre");
+
+app.MapHub<AsistenciaHub>("/asistenciaHub");
+
+//app.AllowCredentials();
 
 app.UseHttpsRedirection();
 

@@ -1,6 +1,7 @@
 ﻿using ControlAsistenciaApi.Core.Dtos;
 using ControlAsistenciaApi.Infraestructure.Helper;
 using ControlAsistenciaApi.Usecase.Interface;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 
 namespace ControlAsistenciaApi.Usecase.Helper
@@ -10,12 +11,14 @@ namespace ControlAsistenciaApi.Usecase.Helper
         private readonly JwtService _jwtService;
         private readonly IConfiguration _configuration;
         private readonly IRegistro_asistenciaUseCase _registro;
+        private readonly IHubContext<AsistenciaHub> _hub;
 
-        public AsistenciaService(JwtService jwtService, IConfiguration config, IRegistro_asistenciaUseCase registro)
+        public AsistenciaService(JwtService jwtService, IConfiguration config, IRegistro_asistenciaUseCase registro, IHubContext<AsistenciaHub> hub)
         {
             _jwtService = jwtService;
             _configuration = config;
             _registro = registro;
+            _hub = hub;
         }
 
         public object GenerarToken(
@@ -41,9 +44,7 @@ namespace ControlAsistenciaApi.Usecase.Helper
         ConfirmarAsistenciaDto dto)
         {
             // 1. Validar JWT
-            var token =
-                _jwtService.ValidarTokenQR(dto.Token);
-
+            var token = _jwtService.ValidarTokenQR(dto.Token);
             if (!token.Valido)
             {
                 return new ResponseAsistenciaConfirmDto
@@ -90,7 +91,7 @@ namespace ControlAsistenciaApi.Usecase.Helper
 
             // 4. Guardar asistencia
 
-            await _registro.GuardarRegistro_asistencia(new Registro_asistenciaDto
+            var result = await _registro.GuardarRegistro_asistencia(new Registro_asistenciaDto
             {
                 estado = true,
                 fecha = DateTime.Now.ToShortDateString(),
@@ -100,11 +101,19 @@ namespace ControlAsistenciaApi.Usecase.Helper
                 token_jti = dto.token_jti,
                 user_agent = dto.user_agent
             });
-
+            if (result != -1)
+            {
+                await _hub.Clients.All.SendAsync("AsistenciaActualizada");
+                return new ResponseAsistenciaConfirmDto
+                {
+                    Ok = true,
+                    Mensaje = "Asistencia registrada"
+                };
+            }
             return new ResponseAsistenciaConfirmDto
             {
-                Ok = true,
-                Mensaje = "Asistencia registrada"
+                Ok = false,
+                Mensaje = "No se pudo registrar la asistencia."
             };
         }
     }
