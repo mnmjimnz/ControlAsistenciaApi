@@ -33,6 +33,18 @@ namespace ControlAsistenciaApi.Usecase
                 return new List<Horario_hDto>();
             }
         }
+        public async Task<List<Horario_hDto>> ObtenerHorario_hPorIdAula(int idAula, int PageSize, int PageNumber)
+        {
+            try
+            {
+                var r = await _repoHorario_h.ObtenerHorario_hPorIdAula(idAula ,PageSize, PageNumber);
+                return _mapper.Map<List<Horario_hDto>>(r);
+            }
+            catch (Exception ex)
+            {
+                return new List<Horario_hDto>();
+            }
+        }
         public async Task<Horario_hDto> ObtenerHorario_hPorId(int? id)
         {
             try

@@ -3,6 +3,7 @@ using ControlAsistenciaApi.Infraestructure.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +25,21 @@ namespace ControlAsistenciaApi.Infraestructure
                                 OFFSET {(PageNumber - 1) * PageSize} ROWS 
                                 FETCH NEXT {PageSize} ROWS ONLY;";
                 return await _rep.GetAllAsync(sql);
+            }
+            catch (Exception ex)
+            {
+                return Enumerable.Empty<Horario_h>();
+            }
+        }
+        public async Task<IEnumerable<Horario_h>> ObtenerHorario_hPorIdAula(int idAula, int PageSize, int PageNumber)
+        {
+            try
+            {
+                string sql = $@"SELECT * FROM horario_h WHERE idaula = {idAula}
+                                ORDER BY id
+                                OFFSET {(PageNumber - 1) * PageSize} ROWS 
+                                FETCH NEXT {PageSize} ROWS ONLY;";
+                return await _rep.GetAllAsync(sql, idAula);
             }
             catch (Exception ex)
             {
