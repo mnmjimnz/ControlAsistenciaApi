@@ -15,11 +15,11 @@ namespace ControlAsistenciaApi.Controllers
             _alumnoU = a;
         }
         [HttpGet("ObtenerAlumnos")]
-        public async Task<IActionResult> ObtenerAlumnos()
+        public async Task<IActionResult> ObtenerAlumnos(int PageSize, int PageNumber)
         {
             try
             {
-                return Ok(await _alumnoU.ObtenerAlumnos());
+                return Ok(await _alumnoU.ObtenerAlumnos(PageSize, PageNumber));
             }
             catch (Exception ex)
             {

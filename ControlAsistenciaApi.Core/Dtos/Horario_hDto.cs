@@ -15,5 +15,6 @@ namespace ControlAsistenciaApi.Core.Dtos
         public string? hora_fin { get; set; }
         public string fecha { get; set; } = string.Empty;
         public string catedratico { get; set; } = string.Empty;
+        public string grupo { get; set; } = string.Empty;
     }
 }

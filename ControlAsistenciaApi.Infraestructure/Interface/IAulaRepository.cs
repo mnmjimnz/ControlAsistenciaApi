@@ -9,7 +9,7 @@ namespace ControlAsistenciaApi.Infraestructure.Interface
 {
     public interface IAulaRepository
     {
-        Task<IEnumerable<Aula>> ObtenerAulas();
+        Task<IEnumerable<Aula>> ObtenerAulas(int PageSize, int PageNumber);
         Task<IEnumerable<Aula>> ObtenerAulaPorId(int? id);
         Task<int> GuardarAula(Aula p);
         Task<int> EditarAula(Aula p);

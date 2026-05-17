@@ -21,11 +21,11 @@ namespace ControlAsistenciaApi.Usecase
             _mapper = map;
         }
 
-        public async Task<List<MateriaDto>> ObtenerMaterias()
+        public async Task<List<MateriaDto>> ObtenerMaterias(int PageSize, int PageNumber)
         {
             try
             {
-                var r = await _repoMateria.ObtenerMaterias();
+                var r = await _repoMateria.ObtenerMaterias(PageSize, PageNumber);
                 return _mapper.Map<List<MateriaDto>>(r);
             }
             catch (Exception ex)

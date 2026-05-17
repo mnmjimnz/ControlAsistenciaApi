@@ -14,11 +14,11 @@ namespace ControlAsistenciaApi.Controllers
             _horario_hUseCase = a;
         }
         [HttpGet("ObtenerHorario_hs")]
-        public async Task<IActionResult> ObtenerHorario_hs()
+        public async Task<IActionResult> ObtenerHorario_hs(int PageSize, int PageNumber)
         {
             try
             {
-                return Ok(await _horario_hUseCase.ObtenerHorario_hs());
+                return Ok(await _horario_hUseCase.ObtenerHorario_hs(PageSize, PageNumber));
             }
             catch (Exception ex)
             {

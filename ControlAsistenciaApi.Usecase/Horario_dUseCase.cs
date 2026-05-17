@@ -81,5 +81,16 @@ namespace ControlAsistenciaApi.Usecase
                 return 0;
             }
         }
+        public async Task<int> DeleteHorario_dPorId(int id)
+        {
+            try
+            {
+                return await _repoHorario_d.DeleteHorario_dPorId(id);
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
     }
 }

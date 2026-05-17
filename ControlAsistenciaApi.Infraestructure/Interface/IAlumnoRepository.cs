@@ -9,7 +9,7 @@ namespace ControlAsistenciaApi.Infraestructure.Interface
 {
     public interface IAlumnoRepository
     {
-        Task<IEnumerable<Alumno>> ObtenerAlumnos();
+        Task<IEnumerable<Alumno>> ObtenerAlumnos(int PageSize, int PageNumber);
         Task<IEnumerable<Alumno>> ObtenerAlumnoPorId(int? id);
         Task<int> GuardarAlumno(Alumno p);
         Task<int> EditarAlumno(Alumno p);

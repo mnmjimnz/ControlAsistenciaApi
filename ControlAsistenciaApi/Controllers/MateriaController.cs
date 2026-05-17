@@ -19,11 +19,11 @@ namespace ControlAsistenciaApi.Controllers
             _materiaUseCase = a;
         }
         [HttpGet("ObtenerMaterias")]
-        public async Task<IActionResult> ObtenerMaterias()
+        public async Task<IActionResult> ObtenerMaterias(int PageSize, int PageNumber)
         {
             try
             {
-                return Ok(await _materiaUseCase.ObtenerMaterias());
+                return Ok(await _materiaUseCase.ObtenerMaterias(PageSize, PageNumber));
             }
             catch (Exception ex)
             {

@@ -9,7 +9,7 @@ namespace ControlAsistenciaApi.Usecase.Interface
 {
     public interface IAlumnoUseCase
     {
-        Task<List<AlumnoDto>> ObtenerAlumnos();
+        Task<List<AlumnoDto>> ObtenerAlumnos(int PageSize, int PageNumber);
         Task<AlumnoDto> ObtenerAlumnoPorId(int? id);
         Task<int> GuardarAlumno(AlumnoDto p);
         Task<int> EditarAlumno(AlumnoDto p);

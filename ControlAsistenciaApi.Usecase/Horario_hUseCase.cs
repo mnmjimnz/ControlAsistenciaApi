@@ -21,11 +21,11 @@ namespace ControlAsistenciaApi.Usecase
             _mapper = map;
         }
 
-        public async Task<List<Horario_hDto>> ObtenerHorario_hs()
+        public async Task<List<Horario_hDto>> ObtenerHorario_hs(int PageSize, int PageNumber)
         {
             try
             {
-                var r = await _repoHorario_h.ObtenerHorario_h();
+                var r = await _repoHorario_h.ObtenerHorario_h(PageSize, PageNumber);
                 return _mapper.Map<List<Horario_hDto>>(r);
             }
             catch (Exception ex)

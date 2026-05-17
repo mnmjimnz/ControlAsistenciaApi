@@ -15,11 +15,11 @@ namespace ControlAsistenciaApi.Controllers
             _aulaUseCase = a;
         }
         [HttpGet("ObtenerAulas")]
-        public async Task<IActionResult> ObtenerAulas()
+        public async Task<IActionResult> ObtenerAulas(int PageSize, int PageNumber)
         {
             try
             {
-                return Ok(await _aulaUseCase.ObtenerAulas());
+                return Ok(await _aulaUseCase.ObtenerAulas(PageSize, PageNumber));
             }
             catch (Exception ex)
             {

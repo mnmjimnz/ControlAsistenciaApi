@@ -21,11 +21,11 @@ namespace ControlAsistenciaApi.Usecase
             _mapper = map;
         }
 
-        public async Task<List<AulaDto>> ObtenerAulas()
+        public async Task<List<AulaDto>> ObtenerAulas(int PageSize, int PageNumber)
         {
             try
             {
-                var r = await _repoAula.ObtenerAulas();
+                var r = await _repoAula.ObtenerAulas(PageSize, PageNumber);
                 return _mapper.Map<List<AulaDto>>(r);
             }
             catch (Exception ex)

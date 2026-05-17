@@ -14,5 +14,6 @@ namespace ControlAsistenciaApi.Usecase.Interface
         Task<int> GuardarHorario_d(Horario_dDto p);
         Task<int> EditarHorario_d(Horario_dDto p);
         Task<List<JoinAlumnoHorarioDetDto>> ObtenerHorario_dPorIdH(int? id);
+        Task<int> DeleteHorario_dPorId(int id);
     }
 }

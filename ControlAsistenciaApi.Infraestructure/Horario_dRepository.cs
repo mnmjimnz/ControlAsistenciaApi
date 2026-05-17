@@ -85,5 +85,18 @@ order by id_horariod desc;";
                 return 0;
             }
         }
+        public async Task<int> DeleteHorario_dPorId(int id)
+        {
+            try
+            {
+                string sql = $"DELETE FROM horario_d WHERE id = {id}";
+                var r = await _rep.DeleteAsync(sql, id);
+                return r;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
     }
 }

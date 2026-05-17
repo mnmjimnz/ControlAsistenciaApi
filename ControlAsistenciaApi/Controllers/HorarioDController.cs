@@ -61,5 +61,17 @@ namespace ControlAsistenciaApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpDelete("DeleteHorario_dPorId")]
+        public async Task<IActionResult> DeleteHorario_dPorId(int id)
+        {
+            try
+            {
+                return Ok(await _horario_dUseCase.DeleteHorario_dPorId(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }

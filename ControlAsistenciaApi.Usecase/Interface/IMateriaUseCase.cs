@@ -9,7 +9,7 @@ namespace ControlAsistenciaApi.Usecase.Interface
 {
     public interface IMateriaUseCase
     {
-        Task<List<MateriaDto>> ObtenerMaterias();
+        Task<List<MateriaDto>> ObtenerMaterias(int PageSize, int PageNumber);
         Task<MateriaDto> ObtenerMateriaPorId(int? id);
         Task<int> GuardarMateria(MateriaDto p);
         Task<int> EditarMateria(MateriaDto p);

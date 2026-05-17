@@ -9,7 +9,7 @@ namespace ControlAsistenciaApi.Usecase.Interface
 {
     public interface IHorario_hUseCase
     {
-        Task<List<Horario_hDto>> ObtenerHorario_hs();
+        Task<List<Horario_hDto>> ObtenerHorario_hs(int PageSize, int PageNumber);
         Task<Horario_hDto> ObtenerHorario_hPorId(int? id);
         Task<int> GuardarHorario_h(Horario_hDto p);
         Task<int> EditarHorario_h(Horario_hDto p);

@@ -15,11 +15,14 @@ namespace ControlAsistenciaApi.Infraestructure
         {
             _rep = generic;
         }
-        public async Task<IEnumerable<Horario_h>> ObtenerHorario_h()
+        public async Task<IEnumerable<Horario_h>> ObtenerHorario_h(int PageSize, int PageNumber)
         {
             try
             {
-                string sql = "SELECT * FROM horario_h";
+                string sql = $@"SELECT * FROM horario_h
+                                ORDER BY id
+                                OFFSET {(PageNumber - 1) * PageSize} ROWS 
+                                FETCH NEXT {PageSize} ROWS ONLY;";
                 return await _rep.GetAllAsync(sql);
             }
             catch (Exception ex)

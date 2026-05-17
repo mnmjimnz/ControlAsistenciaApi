@@ -9,7 +9,7 @@ namespace ControlAsistenciaApi.Infraestructure.Interface
 {
     public interface IMateriaRepository
     {
-        Task<IEnumerable<Materia>> ObtenerMaterias();
+        Task<IEnumerable<Materia>> ObtenerMaterias(int PageSize, int PageNumber);
         Task<IEnumerable<Materia>> ObtenerMateriaPorId(int? id);
         Task<int> GuardarMateria(Materia p);
         Task<int> EditarMateria(Materia p);

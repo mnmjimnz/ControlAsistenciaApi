@@ -9,7 +9,7 @@ namespace ControlAsistenciaApi.Infraestructure.Interface
 {
     public interface IHorario_hRepository
     {
-        Task<IEnumerable<Horario_h>> ObtenerHorario_h();
+        Task<IEnumerable<Horario_h>> ObtenerHorario_h(int PageSize, int PageNumber);
         Task<IEnumerable<Horario_h>> ObtenerHorario_hPorId(int? id);
         Task<int> GuardarHorario_h(Horario_h p);
         Task<int> EditarHorario_h(Horario_h p);

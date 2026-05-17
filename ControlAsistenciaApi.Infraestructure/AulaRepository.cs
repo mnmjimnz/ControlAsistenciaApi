@@ -15,11 +15,14 @@ namespace ControlAsistenciaApi.Infraestructure
         {
             _rep = generic;
         }
-        public async Task<IEnumerable<Aula>> ObtenerAulas()
+        public async Task<IEnumerable<Aula>> ObtenerAulas(int PageSize, int PageNumber)
         {
             try
             {
-                string sql = "SELECT * FROM aula";
+                string sql = $@"SELECT * FROM aula
+                                ORDER BY id
+                                OFFSET {(PageNumber - 1) * PageSize} ROWS 
+                                FETCH NEXT {PageSize} ROWS ONLY;";
                 return await _rep.GetAllAsync(sql);
             }
             catch (Exception ex)
