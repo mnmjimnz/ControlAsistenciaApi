@@ -77,7 +77,7 @@ namespace ControlAsistenciaApi.Usecase.Helper
             // 3. Validar alumno
             bool alumnoExiste =
                 await _registro
-                    .AlumnoYaConfirmo(new Registro_asistenciaDto { id_horario_h = dto.id_horario_h, id_horario_d = dto.id_horario_d });
+                    .AlumnoYaConfirmo(new Registro_asistenciaDto { id_horario_h = dto.id_horario_h, id_horario_d = dto.id_horario_d, token_jti = dto.token_jti });
 
             if (alumnoExiste)
             {

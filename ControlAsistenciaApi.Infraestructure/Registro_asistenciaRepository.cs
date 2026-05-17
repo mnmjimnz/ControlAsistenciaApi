@@ -135,6 +135,7 @@ ORDER BY hd.id DESC;";
     FROM registro_asistencia
     WHERE id_horario_h = {data.id_horario_h}
     AND id_horario_d = {data.id_horario_d}
+    AND token_jti = {data.token_jti}
 );";
                 var r = await _getExist.GetAllAsync(sql, data);
                 return r.FirstOrDefault();
