@@ -61,7 +61,8 @@ namespace ControlAsistenciaApi.Usecase.Helper
                     {
                         fingerprint_sha256 = dto.Fingerprint,
                         id_horario_h = dto.id_horario_h,
-                        user_agent = dto.user_agent
+                        user_agent = dto.user_agent,
+                        token_jti = dto.token_jti,
                     });
 
             if (fingerprintExiste)

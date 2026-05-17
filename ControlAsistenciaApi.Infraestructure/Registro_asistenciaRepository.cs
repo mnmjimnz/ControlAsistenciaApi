@@ -116,8 +116,9 @@ ORDER BY hd.id DESC;";
     AND fingerprint_sha256 = @fingerprint_sha256
 
     AND user_agent = @user_agent
+AND token_jti = @token_jti
 );";
-                var r = await _getExist.GetAllAsync(sql, new { data.id_horario_h, data.fingerprint_sha256, data.user_agent });
+                var r = await _getExist.GetAllAsync(sql, new { data.id_horario_h, data.fingerprint_sha256, data.user_agent, data.token_jti });
                 return r.FirstOrDefault();
             }
             catch (Exception ex)
