@@ -38,7 +38,7 @@ namespace ControlAsistenciaApi.Usecase
             try
             {
                 var r = await _repoMateria.ObtenerMateriaPorId(id);
-                return _mapper.Map<MateriaDto>(r);
+                return _mapper.Map<MateriaDto>(r.SingleOrDefault());
             }
             catch (Exception ex)
             {
