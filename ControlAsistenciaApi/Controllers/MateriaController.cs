@@ -30,6 +30,18 @@ namespace ControlAsistenciaApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpGet("ObtenerMateriasPorId")]
+        public async Task<IActionResult> ObtenerMateriasPorId(int id)
+        {
+            try
+            {
+                return Ok(await _materiaUseCase.ObtenerMateriaPorId(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
         [HttpPost("GuardarMateria")]
         public async Task<IActionResult> GuardarMateria([FromBody] MateriaDto p)
         {
