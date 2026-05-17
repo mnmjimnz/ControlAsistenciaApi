@@ -21,7 +21,8 @@ builder.Services.AddCors(options =>
         policy
             .WithOrigins(
             "https://controlasistencia-front.onrender.com",
-            "http://127.0.0.1:5500")
+            "http://127.0.0.1:5500",
+            "http://127.0.0.1:3000")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
