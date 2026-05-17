@@ -19,8 +19,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("Libre", policy =>
     {
         policy
-            .WithOrigins("https://controlasistencia-front.onrender.com")
-            ///.WithOrigins("http://127.0.0.1:5500")
+            .WithOrigins(
+            "https://controlasistencia-front.onrender.com",
+            "http://127.0.0.1:5500")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
