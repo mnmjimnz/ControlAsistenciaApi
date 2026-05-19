@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ControlAsistenciaApi.Infraestructure
 {
-    public class Horario_hRepository: IHorario_hRepository
+    public class Horario_hRepository : IHorario_hRepository
     {
         private readonly IGenericRepository<Horario_h> _rep;
         public Horario_hRepository(IGenericRepository<Horario_h> generic)
@@ -40,6 +40,21 @@ namespace ControlAsistenciaApi.Infraestructure
                                 OFFSET {(PageNumber - 1) * PageSize} ROWS 
                                 FETCH NEXT {PageSize} ROWS ONLY;";
                 return await _rep.GetAllAsync(sql, idAula);
+            }
+            catch (Exception ex)
+            {
+                return Enumerable.Empty<Horario_h>();
+            }
+        }
+        public async Task<IEnumerable<Horario_h>> ObtenerHorario_hPorDiaYAnio(string dia, string anio, int PageSize, int PageNumber)
+        {
+            try
+            {
+                string sql = $@"select * from horario_h where diasemana = @dia and fecha = @anio
+                                ORDER BY id
+                                OFFSET {(PageNumber - 1) * PageSize} ROWS 
+                                FETCH NEXT {PageSize} ROWS ONLY;";
+                return await _rep.GetAllAsync(sql, new { dia, anio });
             }
             catch (Exception ex)
             {

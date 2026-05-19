@@ -14,5 +14,6 @@ namespace ControlAsistenciaApi.Infraestructure.Interface
         Task<int> GuardarHorario_h(Horario_h p);
         Task<int> EditarHorario_h(Horario_h p);
         Task<IEnumerable<Horario_h>> ObtenerHorario_hPorIdAula(int idAula, int PageSize, int PageNumber);
+        Task<IEnumerable<Horario_h>> ObtenerHorario_hPorDiaYAnio(string dia, string anio, int PageSize, int PageNumber);
     }
 }

@@ -49,6 +49,18 @@ namespace ControlAsistenciaApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpGet("ObtenerHorarioPorDiaYAnio")]
+        public async Task<IActionResult> ObtenerHorario_hPorDiaYAnio(string dia, string anio, int PageSize, int PageNumber)
+        {
+            try
+            {
+                return Ok(await _horario_hUseCase.ObtenerHorario_hPorDiaYAnio(dia, anio, PageSize, PageNumber));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
         [HttpPost("GuardarHorario_h")]
         public async Task<IActionResult> GuardarHorario_h([FromBody] Horario_hDto p)
         {
