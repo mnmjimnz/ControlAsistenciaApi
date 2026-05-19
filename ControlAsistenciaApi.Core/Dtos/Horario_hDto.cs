@@ -16,5 +16,7 @@ namespace ControlAsistenciaApi.Core.Dtos
         public string fecha { get; set; } = string.Empty;
         public string catedratico { get; set; } = string.Empty;
         public string grupo { get; set; } = string.Empty;
+        public string diaSemana { get; set; } = string.Empty;
+        public string ciclo { get; set; } = string.Empty;
     }
 }
