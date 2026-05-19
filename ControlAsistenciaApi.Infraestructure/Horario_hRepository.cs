@@ -62,7 +62,7 @@ namespace ControlAsistenciaApi.Infraestructure
         {
             try
             {
-                string sql = "INSERT INTO horario_h(idaula, idmateria, hora_inicio, hora_fin, fecha, catedratico) VALUES(@idaula, @idmateria, @hora_inicio, @hora_fin, @fecha, @catedratico) RETURNING id;";
+                string sql = "INSERT INTO horario_h(idaula, idmateria, hora_inicio, hora_fin, fecha, catedratico, grupo) VALUES(@idaula, @idmateria, @hora_inicio, @hora_fin, @fecha, @catedratico, @grupo) RETURNING id;";
                 var id = await _rep.InsertScalarAsync(sql, p);
                 return id;
             }
@@ -75,7 +75,7 @@ namespace ControlAsistenciaApi.Infraestructure
         {
             try
             {
-                string sql = "UPDATE horario_h SET idaula = @idaula, idmateria = @idmateria, hora_inicio = @hora_inicio, hora_fin = @hora_fin, fecha = @fecha, catedratico = @catedratico WHERE id = @id";
+                string sql = "UPDATE horario_h SET idaula = @idaula, idmateria = @idmateria, hora_inicio = @hora_inicio, hora_fin = @hora_fin, fecha = @fecha, catedratico = @catedratico, grupo = @grupo WHERE id = @id";
                 var id = await _rep.UpdateAsync(sql, p);
                 return id;
             }
