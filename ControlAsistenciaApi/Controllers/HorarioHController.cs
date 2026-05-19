@@ -25,6 +25,18 @@ namespace ControlAsistenciaApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpGet("ObtenerHorarioPorId")]
+        public async Task<IActionResult> ObtenerHorarioPorId(int id)
+        {
+            try
+            {
+                return Ok(await _horario_hUseCase.ObtenerHorario_hPorId(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
         [HttpGet("ObtenerHorarioPorIdAula")]
         public async Task<IActionResult> ObtenerHorario_hPorIdAula(int idAula, int PageSize, int PageNumber)
         {

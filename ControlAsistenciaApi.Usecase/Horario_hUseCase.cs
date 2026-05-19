@@ -50,7 +50,7 @@ namespace ControlAsistenciaApi.Usecase
             try
             {
                 var r = await _repoHorario_h.ObtenerHorario_hPorId(id);
-                return _mapper.Map<Horario_hDto>(r);
+                return _mapper.Map<Horario_hDto>(r.SingleOrDefault());
             }
             catch (Exception ex)
             {
