@@ -15,5 +15,6 @@ namespace ControlAsistenciaApi.Usecase.Interface
         Task<int> EditarHorario_h(Horario_hDto p);
         Task<List<Horario_hDto>> ObtenerHorario_hPorIdAula(int idAula, int PageSize, int PageNumber);
         Task<List<Horario_hDto>> ObtenerHorario_hPorDiaYAnio(string dia, string anio, int PageSize, int PageNumber);
+        Task<List<Horario_hDto>> ObtenerHorario_hPorDiaAnioAulaCicloMateria(string dia, string anio, int? aula, int? materia, string ciclo, int PageSize, int PageNumber);
     }
 }

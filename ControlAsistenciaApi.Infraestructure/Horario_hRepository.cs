@@ -61,6 +61,41 @@ namespace ControlAsistenciaApi.Infraestructure
                 return Enumerable.Empty<Horario_h>();
             }
         }
+        public async Task<IEnumerable<Horario_h>> ObtenerHorario_hPorDiaAnioAulaCicloMateria(string dia, string anio, int? aula, int? materia, string ciclo, int PageSize, int PageNumber)
+        {
+            try
+            {
+                string sql = string.Empty;
+                if (materia != null)
+                {
+                    sql = $@"select * from horario_h where diasemana = @dia and fecha = @anio
+                            and ciclo = @ciclo and idaula = @aula and idmateria = @materia
+                                ORDER BY id
+                                OFFSET {(PageNumber - 1) * PageSize} ROWS 
+                                FETCH NEXT {PageSize} ROWS ONLY;";
+                    return await _rep.GetAllAsync(sql, new { dia, anio, ciclo, aula, materia });
+                }
+                else
+                {
+                    sql = $@"select * from horario_h where diasemana = @dia and fecha = @anio
+                            and ciclo = @ciclo and idaula = @aula
+                                ORDER BY id
+                                OFFSET {(PageNumber - 1) * PageSize} ROWS 
+                                FETCH NEXT {PageSize} ROWS ONLY;";
+                    return await _rep.GetAllAsync(sql, new { dia, anio, ciclo, aula });
+                    //sql = $@"select * from horario_h where diasemana = @dia and fecha = @anio
+                    //            ORDER BY id
+                    //            OFFSET {(PageNumber - 1) * PageSize} ROWS 
+                    //            FETCH NEXT {PageSize} ROWS ONLY;";
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return Enumerable.Empty<Horario_h>();
+            }
+        }
         public async Task<IEnumerable<Horario_h>> ObtenerHorario_hPorId(int? id)
         {
             try
