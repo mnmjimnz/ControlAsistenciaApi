@@ -26,6 +26,18 @@ namespace ControlAsistenciaApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpGet("ObtenerAlumnosPorNombre")]
+        public async Task<IActionResult> ObtenerAlumnosPorNombre(string filtro,int PageSize, int PageNumber)
+        {
+            try
+            {
+                return Ok(await _alumnoU.ObtenerAlumnosPorNombre(filtro, PageSize, PageNumber));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
         [HttpGet("ObtenerAlumnosPorId")]
         public async Task<IActionResult> ObtenerAlumnosPorId(int id)
         {

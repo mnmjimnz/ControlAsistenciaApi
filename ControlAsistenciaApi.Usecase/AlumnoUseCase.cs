@@ -28,6 +28,18 @@ namespace ControlAsistenciaApi.Usecase
                 return new List<AlumnoDto>();
             }
         }
+        public async Task<List<AlumnoDto>> ObtenerAlumnosPorNombre(string filtro, int PageSize, int PageNumber)
+        {
+            try
+            {
+                var r = await _repoAlumno.ObtenerAlumnosPorNombre(filtro, PageSize, PageNumber);
+                return _mapper.Map<List<AlumnoDto>>(r);
+            }
+            catch (Exception ex)
+            {
+                return new List<AlumnoDto>();
+            }
+        }
         public async Task<AlumnoDto> ObtenerAlumnoPorId(int? id)
         {
             try

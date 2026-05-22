@@ -32,6 +32,27 @@ namespace ControlAsistenciaApi.Infraestructure
                 return Enumerable.Empty<Alumno>();
             }
         }
+        public async Task<IEnumerable<Alumno>> ObtenerAlumnosPorNombre(string filtro, int PageSize, int PageNumber)
+        {
+            try
+            {
+                string nombre = $"%{filtro}%";
+                string sql = @$"
+            SELECT *
+            FROM public.alumno
+            WHERE CONCAT(nombre, ' ', apellido) ILIKE '{nombre}'
+               OR nombre ILIKE '{nombre}'
+               OR apellido ILIKE '{nombre}'
+            ORDER BY id;
+        ";
+                var r = await _rep.GetAllAsync(sql);
+                return r;
+            }
+            catch (Exception ex)
+            {
+                return Enumerable.Empty<Alumno>();
+            }
+        }
         public async Task<IEnumerable<Alumno>> ObtenerAlumnoPorId(int? id)
         {
             try
