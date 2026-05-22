@@ -95,7 +95,7 @@ namespace ControlAsistenciaApi.Usecase.Helper
             var result = await _registro.GuardarRegistro_asistencia(new Registro_asistenciaDto
             {
                 estado = true,
-                fecha = DateTime.Now.ToShortDateString(),
+                fecha = dto.fecha,
                 id_horario_d = dto.id_horario_d,
                 fingerprint_sha256 = dto.Fingerprint,
                 id_horario_h = dto.id_horario_h,

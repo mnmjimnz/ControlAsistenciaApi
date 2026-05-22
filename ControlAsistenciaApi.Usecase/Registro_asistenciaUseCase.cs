@@ -45,11 +45,11 @@ namespace ControlAsistenciaApi.Usecase
                 return new Registro_asistenciaDto();
             }
         }
-        public async Task<List<JoinAsistenciaAlumnosHorarioDet>> ObtenerRegistro_asistenciaPorIdHorarioH(int? id)
+        public async Task<List<JoinAsistenciaAlumnosHorarioDet>> ObtenerRegistro_asistenciaPorIdHorarioH(int? id, string fecha)
         {
             try
             {
-                var r = await _repoRegistro_asistencia.ObtenerRegistro_asistenciaPorIdHorarioH(id) as List<JoinAsistenciaAlumnosHorarioDet>;
+                var r = await _repoRegistro_asistencia.ObtenerRegistro_asistenciaPorIdHorarioH(id, fecha) as List<JoinAsistenciaAlumnosHorarioDet>;
                 return _mapper.Map<List<JoinAsistenciaAlumnosHorarioDet>>(r);
             }
             catch (Exception ex)

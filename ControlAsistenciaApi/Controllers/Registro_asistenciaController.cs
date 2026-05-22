@@ -51,11 +51,11 @@ namespace ControlAsistenciaApi.Controllers
             }
         }
         [HttpGet("ObtenerRegistro_asistenciaPorIdHorarioH")]
-        public async Task<IActionResult> ObtenerRegistro_asistenciaPorIdHorarioH(int id)
+        public async Task<IActionResult> ObtenerRegistro_asistenciaPorIdHorarioH(int id, string fecha)
         {
             try
             {
-                return Ok(await _registro_asistenciaUseCase.ObtenerRegistro_asistenciaPorIdHorarioH(id));
+                return Ok(await _registro_asistenciaUseCase.ObtenerRegistro_asistenciaPorIdHorarioH(id, fecha));
             }
             catch (Exception ex)
             {

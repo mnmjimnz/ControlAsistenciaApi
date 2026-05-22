@@ -16,6 +16,6 @@ namespace ControlAsistenciaApi.Infraestructure.Interface
         Task<int> EditarRegistro_asistencia(Registro_asistencia p);
         Task<bool> ExisteFingerprint(Registro_asistencia data);
         Task<bool> AlumnoYaConfirmo(Registro_asistencia data);
-        Task<IEnumerable<JoinAsistenciaAlumnosHorarioDet>> ObtenerRegistro_asistenciaPorIdHorarioH(int? id);
+        Task<IEnumerable<JoinAsistenciaAlumnosHorarioDet>> ObtenerRegistro_asistenciaPorIdHorarioH(int? id, string fecha);
     }
 }

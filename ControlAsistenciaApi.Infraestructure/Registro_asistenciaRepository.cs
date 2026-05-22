@@ -44,7 +44,7 @@ namespace ControlAsistenciaApi.Infraestructure
                 return Enumerable.Empty<Registro_asistencia>();
             }
         }
-        public async Task<IEnumerable<JoinAsistenciaAlumnosHorarioDet>> ObtenerRegistro_asistenciaPorIdHorarioH(int? id)
+        public async Task<IEnumerable<JoinAsistenciaAlumnosHorarioDet>> ObtenerRegistro_asistenciaPorIdHorarioH(int? id, string fecha)
         {
             try
             {
@@ -67,10 +67,11 @@ LEFT JOIN registro_asistencia rg
     ON rg.id_horario_d = hd.id
     AND rg.id_horario_h = hd.idhorario_h
 
-WHERE hd.idhorario_h = {id}
+WHERE hd.idhorario_h = @id
 AND rg.estado = true
+AND rg.fecha = @fecha
 ORDER BY hd.id DESC;";
-                return await _joinAsistencia.GetAllAsync(sql, id);
+                return await _joinAsistencia.GetAllAsync(sql, new {id, fecha});
             }
             catch (Exception ex)
             {
